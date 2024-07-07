@@ -1,0 +1,8 @@
+pandas
+streamlit
+ollama
+langchain_community
+pypdf
+docarray
+streamlit
+chainlit
