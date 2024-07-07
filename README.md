@@ -4,6 +4,7 @@ make sure you have ollama and llama3 installed locally
 Download the whole zip
 # Create the virtual environment
 python3 -m venv .venv
+
 source .venv/bin/activate
 
 # Install the required modules
