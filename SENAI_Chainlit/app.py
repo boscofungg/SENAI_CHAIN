@@ -45,7 +45,7 @@ async def main():
         coping_skill = df.loc[df['Email'] == email, 'Coping Skill'].values[0]
         test = 1
         context = f"Parenting Styles: {Parenting_Style}\nStrategies: {strategies}\nCoping Skill: {coping_skill}"
-        context += "Please provide some solutions based on the context given."
+        context += "Please provide some solutions based on the context given and please do not mention the parenting styles of the parent in your answer.."
     else:
         test = 0
     if test == 1:
