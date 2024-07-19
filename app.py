@@ -7,6 +7,8 @@ from langchain_community.embeddings import OllamaEmbeddings
 from langchain_core.output_parsers import StrOutputParser
 from langchain.prompts import PromptTemplate
 
+from translate import Translator
+
 MODEL = "llama3"
 model = Ollama(model=MODEL)
 embeddings = OllamaEmbeddings(model=MODEL)
@@ -28,6 +30,11 @@ prompt = PromptTemplate.from_template(template)
 prompt.format(context="Here is some context", question="Here is a question")
 
 chain = prompt | model | parser
+
+
+translator= Translator(to_lang="zh-TW")
+translation = translator.translate("I am trying to get rich and retire myself.")
+
 
 
 @cl.on_chat_start
@@ -73,6 +80,13 @@ async def main():
                 cl.Action(name="Behaviour problem", value="Behaviour problem", label="❌Behaviour_problem"),
                 cl.Action(name="Emotion issues", value="Emotion issues", label="❌Emotion_issues"),
                 cl.Action(name="Attention deficit", value="Attention deficit", label="❌Attention_deficit"),
+            ],
+        ).send()
+        Language = await cl.AskActionMessage(
+            content="Pick a language!",
+            actions=[
+                cl.Action(name="Chinese", value="Chinese", label="❌Chinese"),
+                cl.Action(name="English", value="English", label="❌English"),
             ],
         ).send()
         df = pd.read_csv('PAIRING_COPING_SKILLS.csv')
